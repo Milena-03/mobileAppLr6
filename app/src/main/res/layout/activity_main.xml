@@ -9,11 +9,19 @@
     tools:context=".MainActivity">
 
     <!-- Форма добавления товара -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Добавление товара"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
     <EditText
         android:id="@+id/edit_text_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:hint="Введите название товара"
         android:textSize="18sp" />
 
@@ -33,21 +41,14 @@
         android:layout_marginTop="16dp"
         android:text="Добавить товар" />
 
-    <!-- Кнопка удаления завершенных -->
+    <!-- Кнопка перехода к списку -->
     <Button
-        android:id="@+id/button_delete_completed"
+        android:id="@+id/button_view_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Удалить завершенные"
-        android:backgroundTint="#FF4444" />
-
-    <!-- Список товаров -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="32dp"
+        android:text="Смотреть список товаров"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

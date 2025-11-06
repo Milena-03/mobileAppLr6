@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ShoppingListActivity">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/text_view_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Список покупок"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Кнопка удаления завершенных -->
+    <Button
+        android:id="@+id/button_delete_completed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Удалить завершенные"
+        android:backgroundTint="#FF4444"
+        android:textColor="@android:color/white" />
+
+    <!-- Список товаров - ИСПРАВЛЕННАЯ ЧАСТЬ -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false" />
+
+    <!-- Кнопка возврата -->
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:backgroundTint="#2196F3"
+        android:textColor="@android:color/white" />
+
+</LinearLayout>
