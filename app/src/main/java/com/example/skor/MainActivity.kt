@@ -1,66 +1,73 @@
 package com.example.skor
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.activity.viewModels
+import android.view.View
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import com.example.skor.ShoppingDatabase
-import com.example.skor.ShoppingRepository
-import com.example.skor.ShoppingListViewModel
-import com.example.skor.ShoppingViewModelFactory
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: ShoppingListViewModel by viewModels {
-        val database = ShoppingDatabase.getDatabase(this)
-        val repository = ShoppingRepository(database.shoppingDao())
-        ShoppingViewModelFactory(repository)
-    }
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupClickListeners()
+        // Устанавливаем кастомный Toolbar
+        setSupportActionBar(findViewById(R.id.toolbar))
+
+        // Скрываем стандартную кнопку назад
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+
+        setupNavigation()
+        setupCustomBackButton()
     }
 
-    private fun setupClickListeners() {
-        val addButton: Button = findViewById(R.id.button_add_product)
-        val viewListButton: Button = findViewById(R.id.button_view_list)
-        val nameEditText: EditText = findViewById(R.id.edit_text_product_name)
-        val quantityEditText: EditText = findViewById(R.id.edit_text_product_quantity)
+    private fun setupNavigation() {
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        addButton.setOnClickListener {
-            val productName = nameEditText.text.toString()
-            val productQuantity = quantityEditText.text.toString().toIntOrNull() ?: 1
+        appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(R.id.addItemFragment)
+        )
 
-            if (productName.isNotEmpty()) {
-                viewModel.addNewItem(productName, productQuantity)
-                nameEditText.text.clear()
-                quantityEditText.text.clear()
-
-                Toast.makeText(
-                    this,
-                    "Товар '$productName' добавлен!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    this,
-                    "Введите название товара!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        // Слушатель для обновления заголовка и кнопки назад
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            updateToolbarTitle(destination.label.toString())
+            updateBackButtonVisibility(destination.id)
         }
+    }
 
-        // КНОПКА ПЕРЕХОДА НА ЭКРАН СПИСКА
-        viewListButton.setOnClickListener {
-            val intent = Intent(this, ShoppingListActivity::class.java)
-            startActivity(intent)
+    private fun setupCustomBackButton() {
+        val customBackButton = findViewById<ImageButton>(R.id.custom_back_button)
+        customBackButton.setOnClickListener {
+            onSupportNavigateUp()
         }
+    }
+
+    private fun updateToolbarTitle(title: String) {
+        val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
+        toolbarTitle.text = title
+    }
+
+    private fun updateBackButtonVisibility(currentDestinationId: Int) {
+        val customBackButton = findViewById<ImageButton>(R.id.custom_back_button)
+
+        // Показываем кнопку назад везде, кроме стартового фрагмента
+        if (currentDestinationId == R.id.addItemFragment) {
+            customBackButton.visibility = View.GONE
+        } else {
+            customBackButton.visibility = View.VISIBLE
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        return navHostFragment.navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

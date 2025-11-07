@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/addItemFragment">
+
+    <!-- Фрагмент добавления товара - стартовый (без кнопки "Назад") -->
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.skor.AddItemFragment"
+        android:label="Добавление товара"
+        tools:layout="@layout/fragment_add_item">
+
+        <!-- Action для перехода к списку товаров -->
+        <action
+            android:id="@+id/action_addItemFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+
+    </fragment>
+
+    <!-- Фрагмент списка товаров - будет показывать кнопку "Назад" -->
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.skor.ListFragment"
+        android:label="Список покупок"
+        tools:layout="@layout/fragment_list">
+
+        <!-- Добавляем обратное действие -->
+        <action
+            android:id="@+id/action_listFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment"
+            app:popUpTo="@id/addItemFragment" />
+
+    </fragment>
+
+</navigation>

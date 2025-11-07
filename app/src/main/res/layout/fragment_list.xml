@@ -6,21 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ShoppingListActivity">
+    tools:context=".ListFragment">
 
-    <!-- Заголовок -->
-    <TextView
-        android:id="@+id/text_view_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Список покупок"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="16dp" />
-
-    <!-- Кнопка удаления завершенных -->
     <Button
         android:id="@+id/button_delete_completed"
         android:layout_width="match_parent"
@@ -29,7 +16,6 @@
         android:backgroundTint="#FF4444"
         android:textColor="@android:color/white" />
 
-    <!-- Список товаров - ИСПРАВЛЕННАЯ ЧАСТЬ -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

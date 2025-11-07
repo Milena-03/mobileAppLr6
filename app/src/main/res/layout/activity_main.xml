@@ -5,51 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <!-- Форма добавления товара -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Добавление товара"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="24dp" />
+    <!-- Включаем кастомный Toolbar вместо старого -->
+    <include layout="@layout/custom_toolbar" />
 
-    <EditText
-        android:id="@+id/edit_text_product_name"
+    <!-- NavHostFragment -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите название товара"
-        android:textSize="18sp" />
-
-    <EditText
-        android:id="@+id/edit_text_product_quantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Введите количество"
-        android:inputType="number"
-        android:textSize="18sp" />
-
-    <Button
-        android:id="@+id/button_add_product"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Добавить товар" />
-
-    <!-- Кнопка перехода к списку -->
-    <Button
-        android:id="@+id/button_view_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Смотреть список товаров"
-        android:backgroundTint="#4CAF50"
-        android:textColor="@android:color/white" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
 
 </LinearLayout>
