@@ -54,7 +54,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         val deleteCompletedButton: Button = findViewById(R.id.button_delete_completed)
-        val backButton: Button = findViewById(R.id.button_back)
+
 
         deleteCompletedButton.setOnClickListener {
             lifecycleScope.launch {
@@ -67,10 +67,6 @@ class ShoppingListActivity : AppCompatActivity() {
             }
         }
 
-        // КНОПКА ВОЗВРАТА НА ГЛАВНЫЙ ЭКРАН
-        backButton.setOnClickListener {
-            finish() // Закрываем текущую активность и возвращаемся назад
-        }
     }
 
     private fun observeData() {
