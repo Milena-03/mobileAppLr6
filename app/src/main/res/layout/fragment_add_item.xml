@@ -9,49 +9,56 @@ android:padding="16dp"
 tools:context=".AddItemFragment">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="top">
+        <EditText
+        android:id="@+id/edit_text_product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите название товара"
+        android:textSize="18sp" />
 
-    <EditText
-    android:id="@+id/edit_text_product_name"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Введите название товара"
-    android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edit_text_product_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Введите количество"
+            android:inputType="number"
+            android:textSize="18sp" />
 
-<EditText
-    android:id="@+id/edit_text_product_quantity"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:hint="Введите количество"
-    android:inputType="number"
-    android:textSize="18sp" />
+        <Button
+            android:id="@+id/button_add_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Добавить товар" />
 
-<Button
-    android:id="@+id/button_add_product"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:text="Добавить товар" />
+        <Button
+            android:id="@+id/button_view_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Смотреть список товаров"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white" />
 
-<Button
-    android:id="@+id/button_view_list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="32dp"
-    android:text="Смотреть список товаров"
-    android:backgroundTint="#4CAF50"
-    android:textColor="@android:color/white" />
+    </LinearLayout>
 
     <!-- Добавляем изображение -->
     <ImageView
         android:id="@+id/image_products"
         android:layout_width="465dp"
         android:layout_height="345dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="70dp"
-        android:contentDescription="Изображение продуктов"
+        android:src="@drawable/products"
+        android:layout_marginLeft="35dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/products" />
+        android:layout_gravity="bottom"
+        android:contentDescription="Изображение продуктов"
+         />
 
 </LinearLayout>
